@@ -1,2 +1,6 @@
-idf_component_register(SRCS "hello_world_main.c"
-                    INCLUDE_DIRS "")
+set(COMPONENT_SRCS "main.c")
+
+
+set(COMPONENT_ADD_INCLUDEDIRS "../include/.")
+
+register_component()
