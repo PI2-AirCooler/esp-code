@@ -12,6 +12,7 @@
 #include "freertos/task.h"
 #include "esp_chip_info.h"
 #include "esp_spi_flash.h"
+#include "ds18b20.h"
 
 void app_main(void)
 {
