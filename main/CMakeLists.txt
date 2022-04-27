@@ -1,7 +1,7 @@
 set(COMPONENT_SRCS 
     "main.cc"
     "../drivers/ble.cc"
-    "../drivers/peripherals.cc"
+    "../drivers/mpu6050.c"
     "../drivers/ble_server.cc"
     "../drivers/ble_uart_server.c"
     "../drivers/esp_util.cc"
