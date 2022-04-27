@@ -1,37 +1,19 @@
-/* ***********
- * Project   : util - Utilities to esp-idf
- * Programmer: Joao Lopes
- * Module    : ble_uart_server - BLE UART server to esp-idf
- * Comments  : Based in pcbreflux samples
- * Versions  :
- * ------- 	-------- 	-------------------------
- * 0.1.0 	01/08/18 	First version
- * 0.3.0  	23/08/18	Adjustments to allow sizes of BLE > 255
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "esp_system.h"
 #include "esp_log.h"
-
 #include "esp_bt.h"
-
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
 #include "esp_bt_defs.h"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
-
-//#include "soc.h"
-
 #include "sdkconfig.h"
-
 #include "ble_uart_server.h"
 
 ////// Variables

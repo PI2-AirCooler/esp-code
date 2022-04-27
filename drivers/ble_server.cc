@@ -1,24 +1,6 @@
-/* ***********
- * Project   : util - Utilities to esp-idf
- * Programmer: Joao Lopes
- * Module    : ble_server - C++ class wrapper to esp_ble_uart_server
- * Comments  : wrapper to C routines, based in pcbreflux example
- * Versions  :
- * ------- 	-------- 	-------------------------
- * 0.1.0 	01/08/18 	First version
- * 0.1.1	20/08/18	BLE task for event can be disabled now
- * 0.3.0	23/08/18	Adjustments to allow sizes of BLE > 255
- * 						BLE has a Message now to receive data
- * 						Need when have more 1 message, to avoid empty string on event
- *
- **/
-
-// Includes
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
@@ -26,26 +8,15 @@
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 #include "sdkconfig.h"
-
-// C++
-
 #include <string>
-using std::string;
-
-// Utilities
-
 #include "log.h"
 #include "esp_util.h"
-
-// BLE UART SERVER in C (based in pbcreflux example)
+#include "ble_server.h"
+using std::string;
 
 extern "C" {
-#include "ble_uart_server.h"
+	#include "ble_uart_server.h"
 }
-
-// This project
-
-#include "ble_server.h"
 
 ////// Variables
 
