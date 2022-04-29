@@ -40,8 +40,6 @@
 // Comment this for log always active
 // If have more modules, please define this variable as external in h file
 
-#define LOG_ACTIVE_VAR mLogActive
-
 #ifdef LOG_ACTIVE_VAR // Verify variable to show the log
 
     extern bool LOG_ACTIVE_VAR; // Need to use in another module

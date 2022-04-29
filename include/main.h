@@ -72,7 +72,6 @@ using namespace std;
 
 ////// Prototypes of main
 
-extern void appInitialize(bool resetTimerSeconds);
 extern void notifyMainTask(uint32_t action, bool fromISR=false);
 extern void processBleMessage(const string& message);
 extern void error(const char* message, bool fatal=false);
@@ -82,8 +81,6 @@ extern void restartESP32();
 
 // Log 
 
-extern bool mLogActive;
-
 // Connection with App mobile started? (received message code 01) 
 
 extern bool mAppConnected;
@@ -91,7 +88,6 @@ extern bool mAppConnected;
 // Times
 
 extern uint32_t mTimeSeconds;
-extern uint32_t mLastTimeFeedback;
 extern uint32_t mLastTimeReceivedData;
 
 #endif // MAIN_H_
