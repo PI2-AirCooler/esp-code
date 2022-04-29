@@ -14,7 +14,9 @@
 #define GET_TEMPERATURE "temperature"
 #define GET_STATUS "status"
 #define SET_STATUS "set_status"
-#define SET_TEMPERATURE "set_status"
+#define SET_TEMPERATURE "set_temperature"
+#define RESTART_DEVICE "restart"
+
 
 
 #define STATUS_INITIALIZED "started"
