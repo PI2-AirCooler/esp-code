@@ -138,15 +138,12 @@ void BleServer::finalize() {
 
 		vTaskDelete(xTaskEventHandle);
 
-		logI("Task for event deleted");
-
 		if (xQueueReceiveMessage != NULL) {
 			vQueueDelete(xQueueReceiveMessage);
 		}
 
 		vTaskDelete(xTaskReceiveHandle);
 
-		logI("Task for receive deleted");
 	}
 
 #endif
@@ -390,12 +387,6 @@ static void receive_Task(void *pvParameters) {
 			// Verify Message
 
 			if (queueMessage.size > 0) {
-
-				// Message received
-
-				if (mLogActive) {
-					logV("Message -> data extracted (free %d), do the callback", uxQueueSpacesAvailable(xQueueReceiveMessage));
-				}
 
 				// Callback
 

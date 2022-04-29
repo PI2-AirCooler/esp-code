@@ -41,18 +41,7 @@ class MyBleServerCallbacks: public BleServerCallbacks {
 	 */
 	void onDisconnect() {
 
-		// Ble disconnected
-
-		logD("Ble disconnected!");
-
-		// Flag app not connected 
-
 		mAppConnected = false;
-
-		// Initializes app (main.cc)
-
-		appInitialize(true);
-
 	}
 
 	/**
@@ -121,15 +110,6 @@ void bleSendData(string& data) {
 		return;
 	}
 
-	// Considers the message sent as feedback as well
-
-	mLastTimeFeedback = mTimeSeconds;
-
-	// Debug
-
-	//logD("data [%u] -> %s", data.size(), Util.strExpand(data).c_str());
-
-	// Send by Ble Server
 
 	mBleServer.send(data);
 
