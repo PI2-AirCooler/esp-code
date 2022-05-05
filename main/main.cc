@@ -18,8 +18,11 @@
 #include "ds18b20.h"
 #include "events.h"
 #include "cJSON.h"
+#include "I2Cbus.hpp"
+#include "constants.h"
 
 using namespace std;
+
 
 // C
 
@@ -31,10 +34,11 @@ static void main_Task(void *pvParameters) ;
 
 static string currentStatus = STATUS_INITIALIZED;
 static const char *TAG = "main";
-static float currentTemperature = NULL;
+static float currentTemperature = 0;
 
 static Esp_Util& mUtil = Esp_Util::getInstance(); 
-
+static I2C_t& myI2C = i2c0;
+static I2C_t& myI2C2 = i2c1;
 
 static TaskHandle_t xTaskMainHandler = NULL;
 bool mAppConnected = false;
@@ -43,12 +47,13 @@ extern "C" {
 	void app_main();
 }
 
+
 void app_main()
 {
 
 	mUtil.esp32Initialize();
 	bleInitialize();
-	ds18b20_init(12);
+	ds18b20_init(TEMPERATURE_SENSOR_PORT);
 
 	xTaskCreatePinnedToCore(&main_Task,"main_Task", TASK_STACK_LARGE, NULL, TASK_PRIOR_HIGH, &xTaskMainHandler, TASK_CPU);
 
@@ -84,6 +89,7 @@ static void main_Task (void * pvParameters) {
 				bleSendData(cJSON_Print(temperature));
 				bleSendData(cJSON_Print(status));
 			}
+
 		}
 
 		vTaskDelay( xTicks );
@@ -120,7 +126,27 @@ void processBleMessage(const string& message) {
 			restartESP32();
 		}
 	}
-} 
+}
+
+void init_reles() {    
+    myI2C.begin((gpio_num_t)RELE_1_PORT, (gpio_num_t)(RELE_1_PORT + 1), 400000);
+    myI2C2.begin((gpio_num_t)RELE_2_PORT, (gpio_num_t)(RELE_2_PORT + 1), 400000);
+    myI2C.setTimeout(10);
+    myI2C.scanner();
+
+    myI2C2.setTimeout(10);
+    myI2C2.scanner();
+}
+
+void close_reles() {
+	myI2C.close();
+	myI2C2.close();
+}
+
+void init_freezing() {
+	currentStatus = STATUS_FREEZING;
+	init_reles();
+}
 
 /**
  * @brief Reset the ESP32
